@@ -2,6 +2,7 @@ package com.pokemon.pokemoncollection.controller;
 
 import com.pokemon.pokemoncollection.dto.UserDTO;
 import com.pokemon.pokemoncollection.service.RegisterService;
+import com.pokemon.pokemoncollection.service.RegisterServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,11 @@ public class RegisterController {
         System.out.println("Mail: " + email);
         System.out.println("Password: " + pass);
         UserDTO user = new UserDTO(email, pass);
-        registerService.addNewUser(user);
+        try {
+            registerService.addNewUser(user);
+        }catch (RegisterServiceException e) {
+            System.out.println(e.getMessage());
+        }
         return "register-success";
     }
 }

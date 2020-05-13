@@ -6,7 +6,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegisterService {
     public void addNewUser(UserDTO userDTO){
-        System.out.println("Zabieramy się za zapisywanie użytkownika");
+        validateEmail(userDTO.getEmail());
+    }
+    public void validateEmail(String email){
+        String regex = "^(.+)@(.+)$";
+        if(!email.matches(regex)){
+            throw new RegisterServiceException("Niepoprawny email.");
 
+        }
     }
 }

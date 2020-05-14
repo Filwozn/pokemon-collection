@@ -4,6 +4,7 @@ import com.pokemon.pokemoncollection.dto.UserDTO;
 import com.pokemon.pokemoncollection.service.RegisterService;
 import com.pokemon.pokemoncollection.service.RegisterServiceException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,19 +18,19 @@ public class RegisterController {
     }
 
     @GetMapping("/register")
-    public String getRegisterForm(){
+    public String getRegisterForm() {
         return "register-form";
     }
+
     @PostMapping("/register")
     public String addNewUser(@RequestParam String email,
-                             @RequestParam String pass){
-        System.out.println("Mail: " + email);
-        System.out.println("Password: " + pass);
+                             @RequestParam String pass, Model model) {
         UserDTO user = new UserDTO(email, pass);
         try {
             registerService.addNewUser(user);
-        }catch (RegisterServiceException e) {
-            System.out.println(e.getMessage());
+        } catch (RegisterServiceException e) {
+            model.addAttribute("error", e.getMessage());
+            return "register-failed";
         }
         return "register-success";
     }

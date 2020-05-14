@@ -14,11 +14,21 @@ public class RegisterService {
     }
 
     public void addNewUser(UserDTO userDTO){
-        validateEmail(userDTO.getEmail());
-        validatePassword(userDTO.getPassword());
-        User user = new User(userDTO.getEmail(), userDTO.getPassword());
+        String mail = userDTO.getEmail();
+        String password = userDTO.getPassword();
+        validateEmail(mail);
+        validateEmailUnique(mail);
+        validatePassword(password);
+        User user = new User(mail, password);
         userRepository.save(user);
     }
+
+    private void validateEmailUnique(String mail) {
+        if(userRepository.findByEmail(mail) != null){
+            throw new RegisterServiceException("Taki email już istnieje w bazie danych.");
+        }
+    }
+
     public void validateEmail(String email){
         if (email.isBlank()){
             throw new RegisterServiceException("Należy podać email.");

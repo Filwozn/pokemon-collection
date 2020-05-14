@@ -14,17 +14,17 @@ public class RegisterService {
     }
 
     public void addNewUser(UserDTO userDTO){
-        String mail = userDTO.getEmail();
+        String email = userDTO.getEmail();
         String password = userDTO.getPassword();
-        validateEmail(mail);
-        validateEmailUnique(mail);
+        validateEmail(email);
+        validateEmailUnique(email);
         validatePassword(password);
-        User user = new User(mail, password);
+        User user = new User(email, password);
         userRepository.save(user);
     }
 
-    private void validateEmailUnique(String mail) {
-        if(userRepository.findByEmail(mail) != null){
+    private void validateEmailUnique(String email) {
+        if(userRepository.findByEmail(email) != null){
             throw new RegisterServiceException("Taki email już istnieje w bazie danych.");
         }
     }

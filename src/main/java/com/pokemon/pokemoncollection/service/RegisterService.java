@@ -5,12 +5,19 @@ import com.pokemon.pokemoncollection.model.User;
 import com.pokemon.pokemoncollection.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 @Service
 public class RegisterService {
     private UserRepository userRepository;
 
     public RegisterService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+@PostConstruct //wywołanie po storzeniu obiektu
+    private void addTestUser(){
+        User user = new User("test@test.pl", "testy");
+        userRepository.save(user);
     }
 
     public void addNewUser(UserDTO userDTO){

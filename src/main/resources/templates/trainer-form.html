@@ -5,6 +5,21 @@
     <title>Trainer</title>
 </head>
 <body>
-Uzupełnij dane trenera
+<h1>Tworzenie trenera</h1><br>
+<form action="/trainer" method="post">
+
+    Imię trenera:<input type="text" name="name"><br>
+    Twój ulubiony typ:
+    <select name="type">
+        <option>wodny</option>
+        <option>ognisty</option>
+        <option>ziemny</option>
+        <option>latający</option>
+        <option>normalny</option>
+    </select><br>
+    <input type="submit" value="Dodaj" >
+
+</form><br><br>
+<a href="/">Powrót</a>
 </body>
 </html>

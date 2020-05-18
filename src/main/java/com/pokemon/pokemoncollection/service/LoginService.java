@@ -1,12 +1,15 @@
 package com.pokemon.pokemoncollection.service;
 
 import com.pokemon.pokemoncollection.dto.UserDTO;
+import com.pokemon.pokemoncollection.model.User;
 import com.pokemon.pokemoncollection.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
     private UserRepository userRepository;
+    private boolean logged = false;
+    private User loggedUser = null;
 
     public LoginService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -14,9 +17,11 @@ public class LoginService {
 
     public void loginUser(UserDTO userDTO) {
         String email = userDTO.getEmail();
-        String password = userDTO.getPassword();
         validateEmail(email);
-        validatePassword(password);
+        validatePassword(userDTO);
+        User user =  userRepository.findByEmail(userDTO.getEmail());
+        logIn(user);
+
     }
     public void validateEmail(String email){
         if (email.isBlank()){
@@ -30,13 +35,28 @@ public class LoginService {
             throw new LoginServiceException("Nie istnieje użytkownik o takim e-mailu.");
         }
     }
-    public void validatePassword(String password) {
-        if (password.isBlank()) {
+    public void validatePassword(UserDTO userDTO) {
+        if (userDTO.getPassword().isBlank()) {
             throw new LoginServiceException("Należy podać hasło.");
         }
-        if (password.length()<5) {
+        if (userDTO.getPassword().length()<5) {
             throw new LoginServiceException("Za krótkie hasło.");
-
         }
+
+        User user =  userRepository.findByEmail(userDTO.getEmail());
+          if (!user.getPassword().equals(userDTO.getPassword())){
+              throw new LoginServiceException("Niepoprawne hasło.");
+          }
+    }
+    public void logIn(User user){
+        logged = true;
+        loggedUser = user;
+    }
+
+    public boolean isLogged() {
+        return logged;
+    }
+    public String getLoggerUserMail(){
+        return loggedUser.getEmail();
     }
 }

@@ -14,23 +14,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
     private LoginService loginService;
 
-    //@Autowired
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
 
     @GetMapping("/login")
-    public String getLoginForm(){
+    public String getLoginForm() {
         return "login-form";
     }
 
     @PostMapping("/login")
     public String logUser(@RequestParam String email,
-                          @RequestParam String pass, Model model){
+                          @RequestParam String pass, Model model) {
         UserDTO user = new UserDTO(email, pass);
         try {
             loginService.loginUser(user);
-        } catch (LoginServiceException e){
+        } catch (LoginServiceException e) {
             model.addAttribute("error", e.getMessage());
             return "login-failed";
         }

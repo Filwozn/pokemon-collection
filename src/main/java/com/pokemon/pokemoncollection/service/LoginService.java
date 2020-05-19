@@ -20,7 +20,7 @@ public class LoginService {
         validateEmail(email);
         validatePassword(userDTO);
         User user =  userRepository.findByEmail(userDTO.getEmail());
-        logIn(user);
+        login(user);
 
     }
     public void validateEmail(String email){
@@ -48,9 +48,13 @@ public class LoginService {
               throw new LoginServiceException("Niepoprawne hasło.");
           }
     }
-    public void logIn(User user){
+    public void login(User user){
         logged = true;
         loggedUser = user;
+    }
+    public void logout(){
+        logged = false;
+        loggedUser = null;
     }
 
     public boolean isLogged() {

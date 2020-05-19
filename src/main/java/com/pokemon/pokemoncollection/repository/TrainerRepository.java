@@ -4,4 +4,5 @@ import com.pokemon.pokemoncollection.model.Trainer;
 
 public interface TrainerRepository {
     void save(Trainer trainer);
+    Trainer findByMail(String email);
 }

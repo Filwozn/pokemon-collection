@@ -12,4 +12,14 @@ public class InMemoryTrainerRepository implements TrainerRepository{
     public void save(Trainer trainer) {
         trainers.add(trainer);
     }
+
+    @Override
+    public Trainer findByMail(String email) {
+        for(Trainer trainer : trainers){
+            if(trainer.getEmail().equals(email)){
+               return trainer;
+            }
+        }
+        return null; //FIXME: Use optional
+    }
 }

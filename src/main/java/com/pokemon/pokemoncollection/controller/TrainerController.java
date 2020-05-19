@@ -44,7 +44,7 @@ public class TrainerController {
             model.addAttribute("error", e.getMessage());
             return "trainer-failed";
         }
-        return "trainer-success";
+        return "redirect:/statistics";
     }
 
 

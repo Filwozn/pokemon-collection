@@ -35,6 +35,9 @@ public class TrainerService {
             throw new TrainerServiceException("Posiadasz już trenera");
         }
     }
+    //Ta metoda upewnia się czy użtkownik jest zalogowany (wyrzuca wyjątek jesli niezalogowany), jesli tak to pobiera email
+    //Wyszukujemy trenera po emailu
+    //Jesli trenera nie ma to rzucamy wyjątek, na koniec zwracamy trenera
     public Trainer getLoggedTrainer(){
         loginService.validateUserLogged();
         String email = loginService.getLoggerUserMail();

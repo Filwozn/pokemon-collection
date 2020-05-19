@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LogoutController {
     private LoginService loginService;
 
-
     public LogoutController(LoginService loginService) {
         this.loginService = loginService;
     }
+
     @GetMapping("/logout")
     public String logoutUser(){
         loginService.logout();

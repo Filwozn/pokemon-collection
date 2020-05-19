@@ -3,7 +3,9 @@ package com.pokemon.pokemoncollection.controller;
 import com.pokemon.pokemoncollection.dto.TrainerDTO;
 import com.pokemon.pokemoncollection.service.LoginService;
 import com.pokemon.pokemoncollection.service.TrainerService;
+import com.pokemon.pokemoncollection.service.TrainerServiceException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,9 +29,15 @@ public class TrainerController {
     }
     @PostMapping("/trainer")
     public String addTrainer(@RequestParam String name,
-                             @RequestParam String type){
+                             @RequestParam String type,
+                             Model model){
         TrainerDTO trainerDTO = new TrainerDTO(name, type);
-        trainerService.addTrainer(trainerDTO);
+        try{
+            trainerService.addTrainer(trainerDTO);
+        } catch (TrainerServiceException e){
+            model.addAttribute("error", e.getMessage());
+            return "trainer-failed";
+        }
         return "trainer-success";
     }
 

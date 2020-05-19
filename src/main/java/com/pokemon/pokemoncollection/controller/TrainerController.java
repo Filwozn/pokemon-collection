@@ -21,11 +21,17 @@ public class TrainerController {
     }
 
     @GetMapping("/trainer")
-    public String getTrainerForm(){
-        if(loginService.isLogged()){
-            return "trainer-form";
-        }
+    public String getTrainerForm(Model model){
+        if(!loginService.isLogged()){
             return "login-form";
+        }
+        try {
+            trainerService.validateUserHasNoTrainer();
+        }catch (TrainerServiceException e) {
+            model.addAttribute("error", e.getMessage());
+            return "trainer-failed";
+        }
+        return "trainer-form";
     }
     @PostMapping("/trainer")
     public String addTrainer(@RequestParam String name,

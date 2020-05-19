@@ -1,9 +1,9 @@
 package com.pokemon.pokemoncollection.controller;
 
 import com.pokemon.pokemoncollection.dto.TrainerDTO;
-import com.pokemon.pokemoncollection.service.LoginService;
-import com.pokemon.pokemoncollection.service.TrainerService;
-import com.pokemon.pokemoncollection.service.TrainerServiceException;
+import com.pokemon.pokemoncollection.service.login.LoginService;
+import com.pokemon.pokemoncollection.service.trainer.TrainerService;
+import com.pokemon.pokemoncollection.service.trainer.TrainerServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

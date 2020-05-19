@@ -1,4 +1,4 @@
-package com.pokemon.pokemoncollection.service;
+package com.pokemon.pokemoncollection.service.login;
 
 import com.pokemon.pokemoncollection.dto.UserDTO;
 import com.pokemon.pokemoncollection.model.User;
@@ -63,4 +63,10 @@ public class LoginService {
     public String getLoggerUserMail(){
         return loggedUser.getEmail();
     }
+    public void validateUserLogged(){
+        if(!isLogged()){
+            throw new LoginServiceException("Użytkownik niezalogowany");
+        }
+    }
+
 }

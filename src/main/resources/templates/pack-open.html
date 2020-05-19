@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Otwieranie paczek</title>
+</head>
+<body>
+<h1>Otwórz swoją paczkę!</h1>
+<label th:text=" 'Posiadasz: ' + ${trainer.coins} + ' monet'"></label>
+<form action="/pack" method="post">
+    <input type="submit" value="Złap pokemony" > 100 monet
+</form>
+<a href="/coins">Kup monety</a>
+<br>
+<a href="/">Powrót do strony głównej</a>
+</body>
+</html>

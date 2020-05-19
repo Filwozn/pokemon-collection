@@ -1,8 +1,9 @@
-package com.pokemon.pokemoncollection.service;
+package com.pokemon.pokemoncollection.service.trainer;
 
 import com.pokemon.pokemoncollection.dto.TrainerDTO;
 import com.pokemon.pokemoncollection.model.Trainer;
 import com.pokemon.pokemoncollection.repository.TrainerRepository;
+import com.pokemon.pokemoncollection.service.login.LoginService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,6 +34,15 @@ public class TrainerService {
         if(trainerRepository.findByMail(loginService.getLoggerUserMail()) !=null){
             throw new TrainerServiceException("Posiadasz już trenera");
         }
+    }
+    public Trainer getLoggedTrainer(){
+        loginService.validateUserLogged();
+        String email = loginService.getLoggerUserMail();
+        Trainer trainer = trainerRepository.findByMail(email);
+        if(trainer == null){
+            throw new TrainerServiceException("Stwórz trenera");
+        }
+        return trainer;
     }
 
 }

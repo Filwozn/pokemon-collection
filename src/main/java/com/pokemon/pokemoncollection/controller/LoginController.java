@@ -1,9 +1,8 @@
 package com.pokemon.pokemoncollection.controller;
 
 import com.pokemon.pokemoncollection.dto.UserDTO;
-import com.pokemon.pokemoncollection.service.LoginService;
-import com.pokemon.pokemoncollection.service.LoginServiceException;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pokemon.pokemoncollection.service.login.LoginService;
+import com.pokemon.pokemoncollection.service.login.LoginServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

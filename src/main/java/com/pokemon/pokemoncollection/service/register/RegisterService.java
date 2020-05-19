@@ -1,4 +1,4 @@
-package com.pokemon.pokemoncollection.service;
+package com.pokemon.pokemoncollection.service.register;
 
 import com.pokemon.pokemoncollection.dto.UserDTO;
 import com.pokemon.pokemoncollection.model.User;

@@ -1,8 +1,8 @@
 package com.pokemon.pokemoncollection.controller;
 
 import com.pokemon.pokemoncollection.dto.UserDTO;
-import com.pokemon.pokemoncollection.service.RegisterService;
-import com.pokemon.pokemoncollection.service.RegisterServiceException;
+import com.pokemon.pokemoncollection.service.register.RegisterService;
+import com.pokemon.pokemoncollection.service.register.RegisterServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

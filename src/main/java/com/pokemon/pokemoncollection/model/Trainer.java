@@ -16,8 +16,16 @@ public class Trainer {
         this.email = email;
     }
 
+    public int getCoins() {
+        return coins;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void addPack(List<Card>cards){
+        this.cards.addAll(cards);
     }
 
     @Override

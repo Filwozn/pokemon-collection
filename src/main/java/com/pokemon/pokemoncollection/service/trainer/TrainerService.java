@@ -6,6 +6,8 @@ import com.pokemon.pokemoncollection.repository.TrainerRepository;
 import com.pokemon.pokemoncollection.service.login.LoginService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 @Service
 public class TrainerService {
     private TrainerRepository trainerRepository;
@@ -14,6 +16,11 @@ public class TrainerService {
     public TrainerService(TrainerRepository trainerRepository, LoginService loginService) {
         this.trainerRepository = trainerRepository;
         this.loginService = loginService;
+    }
+    @PostConstruct
+    public void addTestTrainer(){
+        Trainer trainer = new Trainer("Paula", "ognisty", "test@test.pl");
+        trainerRepository.save(trainer);
     }
 
     public void addTrainer(TrainerDTO trainerDTO){

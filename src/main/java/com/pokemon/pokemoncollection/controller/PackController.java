@@ -37,10 +37,10 @@ public class PackController {
     }
     //Tutaj trafiamy po wcieśnieciu przycisku "Otwórz paczkę"
     @PostMapping("/pack")
-    public String openPack(){
+    public String openPack(Model model){
         List<Card> pack = packService.openPack();
-        System.out.println(pack);
-        return "PokemonyPaczka";
+        model.addAttribute("pack", pack);
+        return "new-cards";
     }
 
 }

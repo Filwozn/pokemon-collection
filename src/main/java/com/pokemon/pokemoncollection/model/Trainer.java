@@ -32,6 +32,10 @@ public class Trainer {
         coins = coins - packPrice;
     }
 
+    public List<Card> getCards() {
+        return cards;
+    }
+
     @Override
     public String toString() {
         return "Trainer{" +

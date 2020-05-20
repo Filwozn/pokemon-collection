@@ -28,6 +28,10 @@ public class Trainer {
         this.cards.addAll(cards);
     }
 
+    public void payForPack(int packPrice){
+        coins = coins - packPrice;
+    }
+
     @Override
     public String toString() {
         return "Trainer{" +

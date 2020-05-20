@@ -4,6 +4,7 @@ import com.pokemon.pokemoncollection.model.Card;
 import com.pokemon.pokemoncollection.model.Trainer;
 import com.pokemon.pokemoncollection.service.login.LoginServiceException;
 import com.pokemon.pokemoncollection.service.pack.PackService;
+import com.pokemon.pokemoncollection.service.pack.PackServiceException;
 import com.pokemon.pokemoncollection.service.trainer.TrainerService;
 import com.pokemon.pokemoncollection.service.trainer.TrainerServiceException;
 import org.springframework.stereotype.Controller;
@@ -38,8 +39,12 @@ public class PackController {
 
     @PostMapping("/pack")
     public String openPack(Model model){
-        List<Card> pack = packService.openPack();
-        model.addAttribute("pack", pack);
+        try {
+            List<Card> pack = packService.openPack();
+            model.addAttribute("pack", pack);
+        }catch (PackServiceException e){
+            return "redirect:/coins";
+        }
         return "new-cards";
     }
 

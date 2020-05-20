@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Otwieranie paczek</title>
+
 </head>
 <body>
 <h1>Otwórz swoją paczkę!</h1>
 <label th:text=" 'Posiadasz: ' + ${trainer.coins} + ' monet'"></label>
 <form action="/pack" method="post">
-    <input type="submit" value="Złap pokemony" > 100 monet
+    <input type="submit" value="Złap pokemony" th:disabled="${trainer.coins < 100}"> 100 monet
 </form>
 <a href="/coins">Kup monety</a>
 <br>

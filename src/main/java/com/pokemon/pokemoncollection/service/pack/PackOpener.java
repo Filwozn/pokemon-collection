@@ -20,11 +20,11 @@ public class PackOpener {
         List<Card> allCards = downloadClient.downloadCards();
         Random random = new Random();
         List<Card> pack = new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            int cardIndex = random.nextInt(cards.length);
-//            Card card = new Card(cards[cardIndex]);
-//            pack.add(card);
-//        }
+        for (int i = 0; i < 5; i++) {
+            int cardIndex = random.nextInt(allCards.size());
+            Card card = allCards.get(cardIndex);
+            pack.add(card);
+        }
         return pack;
     }
 }

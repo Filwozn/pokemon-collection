@@ -22,7 +22,7 @@ public class PackController {
         this.trainerService = trainerService;
         this.packService = packService;
     }
-    //Tu trafiamy po wejściu w Otwieranie paczki z głównego menu
+
     @GetMapping("/pack")
     public String getPackPage(Model model){
         try {
@@ -35,7 +35,7 @@ public class PackController {
         }
         return "pack-open";
     }
-    //Tutaj trafiamy po wcieśnieciu przycisku "Otwórz paczkę"
+
     @PostMapping("/pack")
     public String openPack(Model model){
         List<Card> pack = packService.openPack();

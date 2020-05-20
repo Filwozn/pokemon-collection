@@ -14,7 +14,7 @@ public class RegisterService {
     public RegisterService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-@PostConstruct //wywołanie po storzeniu obiektu
+@PostConstruct
     private void addTestUser(){
         User user = new User("test@test.pl", "testy");
         userRepository.save(user);

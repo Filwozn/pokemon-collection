@@ -17,6 +17,7 @@ public class TrainerService {
         this.trainerRepository = trainerRepository;
         this.loginService = loginService;
     }
+
     @PostConstruct
     public void addTestTrainer(){
         Trainer trainer = new Trainer("Paula", "ognisty", "test@test.pl");
@@ -32,19 +33,19 @@ public class TrainerService {
                 loginService.getLoggerUserMail());
         trainerRepository.save(trainer);
     }
+
     public void validateName(String name){
         if(name.isBlank()){
             throw new TrainerServiceException("Nie podano imienia");
         }
     }
+
     public void validateUserHasNoTrainer(){
         if(trainerRepository.findByMail(loginService.getLoggerUserMail()) !=null){
             throw new TrainerServiceException("Posiadasz już trenera");
         }
     }
-    //Ta metoda upewnia się czy użtkownik jest zalogowany (wyrzuca wyjątek jesli niezalogowany), jesli tak to pobiera email
-    //Wyszukujemy trenera po emailu
-    //Jesli trenera nie ma to rzucamy wyjątek, na koniec zwracamy trenera
+
     public Trainer getLoggedTrainer(){
         loginService.validateUserLogged();
         String email = loginService.getLoggerUserMail();

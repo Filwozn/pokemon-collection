@@ -7,7 +7,7 @@
 <body>
 <h1>Twoje nowe karty to:</h1>
 <tr th:each="card:${pack}">
-    <td><label th:text="${card.name}"></label><br></td>
+    <td><img th:src="${card.imageUrl}"/></td>
 </tr><br>
 <a href="/pack">Otwórz kolejną paczkę</a><br>
 <a href="/">Powrót do strony głównej</a>

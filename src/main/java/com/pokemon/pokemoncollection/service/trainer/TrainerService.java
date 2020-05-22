@@ -41,7 +41,7 @@ public class TrainerService {
     }
 
     public void validateUserHasNoTrainer(){
-        if(trainerRepository.findByMail(loginService.getLoggerUserMail()) !=null){
+        if(trainerRepository.findByEmail(loginService.getLoggerUserMail()) !=null){
             throw new TrainerServiceException("Posiadasz już trenera");
         }
     }
@@ -49,7 +49,7 @@ public class TrainerService {
     public Trainer getLoggedTrainer(){
         loginService.validateUserLogged();
         String email = loginService.getLoggerUserMail();
-        Trainer trainer = trainerRepository.findByMail(email);
+        Trainer trainer = trainerRepository.findByEmail(email);
         if(trainer == null){
             throw new TrainerServiceException("Stwórz trenera");
         }

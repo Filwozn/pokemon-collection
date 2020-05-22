@@ -9,12 +9,13 @@ import java.util.List;
 public class InMemoryTrainerRepository implements TrainerRepository{
     private List<Trainer>trainers = new ArrayList<>();
     @Override
-    public void save(Trainer trainer) {
+    public Trainer save(Trainer trainer) {
         trainers.add(trainer);
+        return trainer;
     }
 
     @Override
-    public Trainer findByMail(String email) {
+    public Trainer findByEmail(String email) {
         for(Trainer trainer : trainers){
             if(trainer.getEmail().equals(email)){
                return trainer;

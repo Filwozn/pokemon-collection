@@ -1,13 +1,19 @@
 package com.pokemon.pokemoncollection.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Trainer {
     private String name;
     private String type;
     private int coins = 500;
+    @ManyToMany
     private List<Card> cards = new ArrayList<>();
+    @Id
     private String email;
 
     public Trainer(String name, String type, String email) {
@@ -15,6 +21,8 @@ public class Trainer {
         this.type = type;
         this.email = email;
     }
+
+    public Trainer(){}
 
     public int getCoins() {
         return coins;

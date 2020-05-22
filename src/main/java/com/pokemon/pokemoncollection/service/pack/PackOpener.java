@@ -2,6 +2,7 @@ package com.pokemon.pokemoncollection.service.pack;
 
 import com.pokemon.pokemoncollection.client.PokemonTCGApiClient;
 import com.pokemon.pokemoncollection.model.Card;
+import com.pokemon.pokemoncollection.repository.DataBaseCardRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,14 +11,14 @@ import java.util.Random;
 
 @Component
 public class PackOpener {
-    private PokemonTCGApiClient downloadClient;
+    private DataBaseCardRepository cardRepository;
 
-    public PackOpener(PokemonTCGApiClient downloadClient) {
-        this.downloadClient = downloadClient;
+    public PackOpener(DataBaseCardRepository cardRepository) {
+        this.cardRepository = cardRepository;
     }
 
     public List<Card> generatePack() {
-        List<Card> allCards = downloadClient.downloadCards();
+        List<Card> allCards = cardRepository.findAll();
         Random random = new Random();
         List<Card> pack = new ArrayList<>();
         for (int i = 0; i < 5; i++) {

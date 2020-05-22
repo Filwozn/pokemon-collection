@@ -3,6 +3,6 @@ package com.pokemon.pokemoncollection.repository;
 import com.pokemon.pokemoncollection.model.Trainer;
 
 public interface TrainerRepository {
-    void save(Trainer trainer);
-    Trainer findByMail(String email);
+    Trainer save(Trainer trainer);
+    Trainer findByEmail(String email);
 }

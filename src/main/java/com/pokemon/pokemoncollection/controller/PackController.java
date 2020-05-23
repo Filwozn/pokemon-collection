@@ -31,8 +31,6 @@ public class PackController {
             model.addAttribute("trainer", trainer);
         }catch (TrainerServiceException e){
             return "redirect:/trainer";
-        }catch (LoginServiceException e){
-            return "redirect:/login";
         }
         return "pack-open";
     }

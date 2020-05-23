@@ -3,6 +3,7 @@ package com.pokemon.pokemoncollection.service.register;
 import com.pokemon.pokemoncollection.dto.UserDTO;
 import com.pokemon.pokemoncollection.model.User;
 import com.pokemon.pokemoncollection.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -10,19 +11,22 @@ import javax.annotation.PostConstruct;
 @Service
 public class RegisterService {
     private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
-    public RegisterService(UserRepository userRepository) {
+    public RegisterService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 @PostConstruct
     private void addTestUser(){
-        User user = new User("test@test.pl", "testy");
+        User user = new User("test@test.pl", passwordEncoder.encode("testy"));
         userRepository.save(user);
     }
 
     public void addNewUser(UserDTO userDTO){
         String email = userDTO.getEmail();
-        String password = userDTO.getPassword();
+        String password = passwordEncoder.encode(userDTO.getPassword());
+        System.out.println(password);
         validateEmail(email);
         validateEmailUnique(email);
         validatePassword(password);

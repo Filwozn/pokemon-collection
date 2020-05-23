@@ -20,6 +20,7 @@ public class PackService {
         this.packOpener = packOpener;
         this.trainerRepository = trainerRepository;
     }
+
     public List<Card> openPack(){
         Trainer trainer = trainerService.getLoggedTrainer();
         validateCoinsAmount(trainer);
@@ -30,11 +31,10 @@ public class PackService {
         trainerRepository.save(trainer);
         return pack;
     }
+
     public void validateCoinsAmount(Trainer trainer){
         if(trainer.getCoins() < 100){
             throw new PackServiceException("Za mało monet");
         }
-
     }
-
 }

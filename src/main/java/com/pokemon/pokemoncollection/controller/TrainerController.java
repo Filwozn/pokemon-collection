@@ -22,9 +22,6 @@ public class TrainerController {
 
     @GetMapping("/trainer")
     public String getTrainerForm(Model model){
-        if(!loginService.isLogged()){
-            return "login-form";
-        }
         try {
             trainerService.validateUserHasNoTrainer();
         }catch (TrainerServiceException e) {

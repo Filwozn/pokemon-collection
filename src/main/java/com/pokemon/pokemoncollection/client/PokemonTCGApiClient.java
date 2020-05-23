@@ -27,7 +27,7 @@ public class PokemonTCGApiClient {
         cardRepository.saveAll(cards);
     }
 
-    public List<Card> downloadCards(){
+    private List<Card> downloadCards(){
      Cards cardsObject = restTemplate.getForObject(POKEMON_TCG_API_LINK, Cards.class);
      if(cardsObject == null){
          return new ArrayList<>();

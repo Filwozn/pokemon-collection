@@ -22,8 +22,6 @@ public class YourCardsController {
             model.addAttribute("cards", trainer.getCards());
         }catch (TrainerServiceException e){
             return "redirect:/trainer";
-        }catch (LoginServiceException e){
-            return "redirect:/login";
         }
         return "your-cards";
     }

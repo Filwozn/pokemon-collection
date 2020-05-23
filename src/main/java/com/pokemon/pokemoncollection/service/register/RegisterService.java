@@ -26,7 +26,6 @@ public class RegisterService {
     public void addNewUser(UserDTO userDTO){
         String email = userDTO.getEmail();
         String password = passwordEncoder.encode(userDTO.getPassword());
-        System.out.println(password);
         validateEmail(email);
         validateEmailUnique(email);
         validatePassword(password);

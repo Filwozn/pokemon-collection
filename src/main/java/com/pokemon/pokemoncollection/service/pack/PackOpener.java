@@ -1,6 +1,5 @@
 package com.pokemon.pokemoncollection.service.pack;
 
-import com.pokemon.pokemoncollection.client.PokemonTCGApiClient;
 import com.pokemon.pokemoncollection.model.Card;
 import com.pokemon.pokemoncollection.repository.DataBaseCardRepository;
 import org.springframework.stereotype.Component;

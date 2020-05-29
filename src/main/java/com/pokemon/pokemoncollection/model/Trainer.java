@@ -44,6 +44,10 @@ public class Trainer {
         return cards;
     }
 
+    public void addCoins(int coins){
+        this.coins += coins;
+    }
+
     @Override
     public String toString() {
         return "Trainer{" +

@@ -1,10 +1,13 @@
 package com.pokemon.pokemoncollection.client;
 
+import com.pokemon.pokemoncollection.client.tamplates.AllSets;
 import com.pokemon.pokemoncollection.model.Card;
 import com.pokemon.pokemoncollection.model.Cards;
+import com.pokemon.pokemoncollection.model.Set;
 import com.pokemon.pokemoncollection.repository.DataBaseCardRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.thymeleaf.expression.Sets;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -25,6 +28,11 @@ public class PokemonTCGApiClient {
     public void fillDataBase(){
         List<Card> cards = downloadCards();
         cardRepository.saveAll(cards);
+    }
+    @PostConstruct
+    public void downloadSets(){
+       AllSets allSets = restTemplate.getForObject("https://pokemontcg.io/sets", AllSets.class);
+        System.out.println(allSets);
     }
 
     private List<Card> downloadCards(){

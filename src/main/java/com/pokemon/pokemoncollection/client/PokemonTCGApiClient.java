@@ -31,7 +31,7 @@ public class PokemonTCGApiClient {
     }
     @PostConstruct
     public void downloadSets(){
-       AllSets allSets = restTemplate.getForObject("https://pokemontcg.io/sets", AllSets.class);
+       AllSets allSets = restTemplate.getForObject("https://api.pokemontcg.io/v1/sets", AllSets.class);
         System.out.println(allSets);
     }
 

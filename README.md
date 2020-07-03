@@ -19,6 +19,7 @@ saved in database and attached to pokemon's trainer.
 ## Screenshots
 ## Examples
 ### Example 1
+TrainerService validates comming data structure and if aceptect builds valid trainer object and save it to database.
 ```java
  public void addTrainer(TrainerDTO trainerDTO){
         validateUserHasNoTrainer();
@@ -32,6 +33,7 @@ saved in database and attached to pokemon's trainer.
     }
 ```
 ### Example 2
+Spring Security configuration. Blocks most of pages if not logget user and shows custom login page.
 ```java
  protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();

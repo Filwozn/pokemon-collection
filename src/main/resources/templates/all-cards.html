@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Wszystkie Karty</title>
+</head>
+<body>
+<h1>Oto galeria wszystkich kart:</h1>
+<tr th:each="card:${cards}">
+    <td><img th:src="${card.imageUrl}"/></td>
+</tr><br>
+<a href="/">Powrót do strony głównej</a>
+</body>
+</html>

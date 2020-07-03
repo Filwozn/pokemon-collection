@@ -31,6 +31,7 @@ public class TrainerService {
                 trainerDTO.getName(),
                 trainerDTO.getType(),
                 loginService.getLoggerUserMail());
+
         trainerRepository.save(trainer);
     }
 

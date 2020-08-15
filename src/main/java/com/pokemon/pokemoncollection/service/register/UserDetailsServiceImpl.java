@@ -1,5 +1,6 @@
 package com.pokemon.pokemoncollection.service.register;
 
+import com.pokemon.pokemoncollection.model.User;
 import com.pokemon.pokemoncollection.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +16,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userRepository.findByEmail(userName);
+
+        User user = userRepository.findByEmail(userName);
+        if (user == null){
+            throw new UsernameNotFoundException("Nie znaleziono użytkownika");
+        }
+        return user;
     }
 }

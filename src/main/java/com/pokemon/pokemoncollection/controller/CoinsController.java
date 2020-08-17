@@ -1,6 +1,7 @@
 package com.pokemon.pokemoncollection.controller;
 
 import com.pokemon.pokemoncollection.service.coins.CoinService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,4 +24,8 @@ public class CoinsController {
         coinService.addCoins(coinsAmount);
         return "redirect:pack";
     }
+
+
+
+
 }

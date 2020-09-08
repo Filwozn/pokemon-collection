@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Brak karty</title>
 </head>
 <body>
-<h1>Niestety nie posiadasz tej karty.</h1>
+<h1>Sprzedaż nieudana</h1>
+<h2 th:text="${error}"></h2>
 <a href="/">Powrót</a>
 </body>
 </html>

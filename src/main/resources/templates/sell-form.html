@@ -8,6 +8,14 @@
 <h1>Sprzedaj kartę</h1>
 <p th:text="'Nazwa:' + ${card.name}"> </p>
 <p th:text="'Ilość posiadanych kart:' + ${amount}"> </p>
+<form th:action=" '/market/sell/' + ${card.id}" method="post">
+    <label>Wybierz ile pokemonów chcesz sprzedać</label>
+<input type="number" name = "amount"><br>
+
+    <label>Cena</label>
+<input type="number" name = "price"><br>
+    <input type="submit">
+</form>
 <img th:src = "${card.imageUrl}"/>
 </body>
 </html>

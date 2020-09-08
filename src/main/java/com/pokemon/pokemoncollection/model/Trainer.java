@@ -1,18 +1,21 @@
 package com.pokemon.pokemoncollection.model;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Trainer {
     private String name;
     private String type;
     private int coins = 500;
-    @ManyToMany
-    private List<Card> cards = new ArrayList<>();
+    @ElementCollection
+    private Map<Card, Integer> cards = new HashMap<>();
     @Id
     private String email;
 
@@ -24,6 +27,16 @@ public class Trainer {
 
     public Trainer(){}
 
+    public void addCard(Card card) {
+        if(cards.containsKey(card)){
+         int amount = cards.get(card);
+         cards.put(card, amount +1);
+
+        }else {
+            cards.put(card, 1);
+        }
+        }
+
     public int getCoins() {
         return coins;
     }
@@ -33,19 +46,25 @@ public class Trainer {
     }
 
     public void addPack(List<Card>cards){
-        this.cards.addAll(cards);
+        for (Card card : cards) {
+            addCard(card);
+        }
     }
 
     public void payForPack(int packPrice){
         coins = coins - packPrice;
     }
 
-    public List<Card> getCards() {
+    public Map<Card, Integer> getCards() {
         return cards;
     }
 
     public void addCoins(int coins){
         this.coins += coins;
+    }
+
+    public int getCardAmount(Card card){
+        return cards.get(card);
     }
 
     @Override
@@ -59,3 +78,14 @@ public class Trainer {
                 '}';
     }
 }
+
+//r2:
+//trener: Map<Card, Inteeger>
+
+
+//klucz -> wartosc
+
+//email -> user
+
+
+

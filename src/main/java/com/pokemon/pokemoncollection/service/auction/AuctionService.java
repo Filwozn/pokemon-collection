@@ -2,29 +2,44 @@ package com.pokemon.pokemoncollection.service.auction;
 
 import com.pokemon.pokemoncollection.model.Card;
 import com.pokemon.pokemoncollection.model.Trainer;
+import com.pokemon.pokemoncollection.repository.DataBaseCardRepository;
 import com.pokemon.pokemoncollection.service.trainer.TrainerService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class AuctionService {
     private TrainerService trainerService;
+    private DataBaseCardRepository dataBaseCardRepository;
 
-    public AuctionService(TrainerService trainerService) {
+    public AuctionService(TrainerService trainerService, DataBaseCardRepository dataBaseCardRepository) {
         this.trainerService = trainerService;
+        this.dataBaseCardRepository = dataBaseCardRepository;
     }
 
-    public List<Card> findOwnedCardsById(String id) {
+    //int
+    public int howManySameIdCard(String id) {
+        //znajdz karte po ID
+        Card card = findCardById(id);
+        //sprawdz ile trener ma sztuk danej karty
         Trainer trainer = trainerService.getLoggedTrainer();
-        List<Card> ownedCards = trainer.getCards();
-        List<Card> correctCards = new ArrayList<>();
-        for (Card card : ownedCards) {
-            if (id.equals(card.getId())) {
-                correctCards.add(card);
-            }
+        return trainer.getCardAmount(card);
+    }
+    public Card findCardById(String id){
+        return dataBaseCardRepository.findById(id).get();
+    }
+
+    public void sellCards(String id, int requestedAmount, int price) {
+        int ownedAmount = howManySameIdCard(id);
+        if (requestedAmount > ownedAmount) {
+            throw new AuctionServiceException("Nie posiadasz tylu kart");
+        }else if(requestedAmount < 1){
+            throw new AuctionServiceException("Nie możesz sprzedać zero kart lub mniej");
         }
-        return correctCards;
+        if (price < 0){
+            throw new AuctionServiceException("Minusowa cena!");
+        }
+        System.out.println("Wystawiłeś kartę na sprzedaż");
     }
 }

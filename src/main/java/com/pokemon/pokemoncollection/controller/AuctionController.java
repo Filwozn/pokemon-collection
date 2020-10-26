@@ -4,6 +4,7 @@ import com.pokemon.pokemoncollection.model.Card;
 import com.pokemon.pokemoncollection.model.Trainer;
 import com.pokemon.pokemoncollection.service.auction.AuctionService;
 import com.pokemon.pokemoncollection.service.auction.AuctionServiceException;
+import com.pokemon.pokemoncollection.service.login.LoginService;
 import com.pokemon.pokemoncollection.service.trainer.TrainerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class AuctionController {
+public class AuctionController extends BaseController {
     private TrainerService trainerService;
     private AuctionService auctionService;
 
-    public AuctionController(TrainerService trainerService, AuctionService auctionService) {
+    public AuctionController(TrainerService trainerService, AuctionService auctionService, LoginService loginService) {
+        super(loginService);
         this.trainerService = trainerService;
         this.auctionService = auctionService;
     }

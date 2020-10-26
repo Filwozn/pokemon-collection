@@ -36,6 +36,14 @@ public class Trainer {
             cards.put(card, 1);
         }
         }
+    public void removeCard(Card card, int amount){
+        if(cards.containsKey(card)) {
+            cards.put(card, cards.get(card) - amount);
+        }
+        if(cards.get(card) <= 0){
+            cards.remove(card);
+        }
+    }
 
     public int getCoins() {
         return coins;

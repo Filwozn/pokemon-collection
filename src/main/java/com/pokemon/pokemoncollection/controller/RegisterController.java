@@ -1,6 +1,7 @@
 package com.pokemon.pokemoncollection.controller;
 
 import com.pokemon.pokemoncollection.dto.UserDTO;
+import com.pokemon.pokemoncollection.service.login.LoginService;
 import com.pokemon.pokemoncollection.service.register.RegisterService;
 import com.pokemon.pokemoncollection.service.register.RegisterServiceException;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class RegisterController {
+public class RegisterController extends BaseController{
     private RegisterService registerService;
 
-    public RegisterController(RegisterService registerService) {
+    public RegisterController(RegisterService registerService, LoginService loginService) {
+        super(loginService);
         this.registerService = registerService;
     }
 

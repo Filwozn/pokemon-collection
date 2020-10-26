@@ -40,6 +40,10 @@ public class AuctionService {
         if (price < 0){
             throw new AuctionServiceException("Minusowa cena!");
         }
-        System.out.println("Wystawiłeś kartę na sprzedaż");
+        Trainer trainer = trainerService.getLoggedTrainer();
+        Card card = findCardById(id);
+        trainer.removeCard(card, requestedAmount);
+        trainerService.saveTrainer(trainer);
     }
+
 }

@@ -2,11 +2,13 @@ label {
 color: red;
 }
 
-h1 {
-  color: green;
-}
-
 .klasa {
   color: blue;
   font: 22px Arial, Helvetica, sans-serif;
+}
+.error-message {
+color: red;
+}
+.success-message {
+color: green;
 }

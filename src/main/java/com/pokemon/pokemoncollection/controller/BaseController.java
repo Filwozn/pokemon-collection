@@ -5,15 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
-public class HomeController {
+
+public abstract class BaseController {
     private LoginService loginService;
-    public HomeController(LoginService loginService) {
+    public BaseController(LoginService loginService) {
         this.loginService = loginService;
     }
 
-    @GetMapping
-    public String getHomePage(Model model){
+    public String getHomePage(Model model, String message, MessageType messageType ){
+        model.addAttribute(messageType.getId(),message);
+
         if(loginService.isLogged()){
             String mail = loginService.getLoggerUserMail();
             model.addAttribute("email", mail);
@@ -21,5 +22,18 @@ public class HomeController {
             model.addAttribute("email", "Niezalogowany");
         }
         return "index";
+    }
+}
+
+enum MessageType {
+    ERROR("errorMessage"), SUCCESS("successMessage");
+    private String id;
+
+    MessageType(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 }

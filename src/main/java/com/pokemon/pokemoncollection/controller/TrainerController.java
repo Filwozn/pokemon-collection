@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class TrainerController {
+public class TrainerController extends BaseController{
     private LoginService loginService;
     private TrainerService trainerService;
 
     public TrainerController(LoginService loginService, TrainerService trainerService) {
+        super(loginService);
         this.loginService = loginService;
         this.trainerService = trainerService;
     }

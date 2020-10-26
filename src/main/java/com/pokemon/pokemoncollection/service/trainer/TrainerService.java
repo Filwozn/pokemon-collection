@@ -19,12 +19,12 @@ public class TrainerService {
     }
 
     @PostConstruct
-    public void addTestTrainer(){
+    public void addTestTrainer() {
         Trainer trainer = new Trainer("Paula", "ognisty", "test@test.pl");
-        trainerRepository.save(trainer);
+        saveTrainer(trainer);
     }
 
-    public void addTrainer(TrainerDTO trainerDTO){
+    public void addTrainer(TrainerDTO trainerDTO) {
         validateUserHasNoTrainer();
         validateName(trainerDTO.getName());
         Trainer trainer = new Trainer(
@@ -32,26 +32,31 @@ public class TrainerService {
                 trainerDTO.getType(),
                 loginService.getLoggerUserMail());
 
-        trainerRepository.save(trainer);
+        saveTrainer(trainer);
     }
 
-    public void validateName(String name){
-        if(name.isBlank()){
+    public void saveTrainer(Trainer trainer) {
+        trainerRepository.save(trainer);
+
+    }
+
+    public void validateName(String name) {
+        if (name.isBlank()) {
             throw new TrainerServiceException("Nie podano imienia");
         }
     }
 
-    public void validateUserHasNoTrainer(){
-        if(trainerRepository.findByEmail(loginService.getLoggerUserMail()) !=null){
+    public void validateUserHasNoTrainer() {
+        if (trainerRepository.findByEmail(loginService.getLoggerUserMail()) != null) {
             throw new TrainerServiceException("Posiadasz już trenera");
         }
     }
 
-    public Trainer getLoggedTrainer(){
+    public Trainer getLoggedTrainer() {
         loginService.validateUserLogged();
         String email = loginService.getLoggerUserMail();
         Trainer trainer = trainerRepository.findByEmail(email);
-        if(trainer == null){
+        if (trainer == null) {
             throw new TrainerServiceException("Stwórz trenera");
         }
         return trainer;

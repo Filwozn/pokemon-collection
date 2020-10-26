@@ -2,6 +2,7 @@ package com.pokemon.pokemoncollection.controller;
 
 import com.pokemon.pokemoncollection.model.Card;
 import com.pokemon.pokemoncollection.model.Trainer;
+import com.pokemon.pokemoncollection.service.login.LoginService;
 import com.pokemon.pokemoncollection.service.login.LoginServiceException;
 import com.pokemon.pokemoncollection.service.pack.PackService;
 import com.pokemon.pokemoncollection.service.pack.PackServiceException;
@@ -15,11 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class PackController {
+public class PackController extends BaseController{
     private TrainerService trainerService;
     private PackService packService;
 
-    public PackController(TrainerService trainerService, PackService packService) {
+    public PackController(TrainerService trainerService, PackService packService, LoginService loginService) {
+        super(loginService);
         this.trainerService = trainerService;
         this.packService = packService;
     }

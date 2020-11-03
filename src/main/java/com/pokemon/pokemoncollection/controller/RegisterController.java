@@ -31,9 +31,8 @@ public class RegisterController extends BaseController{
         try {
             registerService.addNewUser(user);
         } catch (RegisterServiceException e) {
-            model.addAttribute("error", e.getMessage());
-            return "register-failed";
+            return redirectHomePage(model, e.getMessage(),MessageType.ERROR);
         }
-        return "register-success";
+        return redirectHomePage(model,"Rejestracja udana! \n Witamy!",MessageType.SUCCESS);
     }
 }

@@ -36,8 +36,7 @@ public class AuctionController extends BaseController {
     public String getSellingForm(@PathVariable String id, Model model){
         int cardsAmount = auctionService.howManySameIdCard(id);
         if(cardsAmount <= 0){
-            model.addAttribute("error", "Nie odnaleziono karty");
-            return "sell-failed";
+            return redirectHomePage(model,"Nie odnaleziono karty",MessageType.ERROR);
         }
         model.addAttribute("card", auctionService.findCardById(id));
         model.addAttribute("amount", cardsAmount);
@@ -49,9 +48,7 @@ public class AuctionController extends BaseController {
         try {
             auctionService.sellCards(id, amount, price);
         }catch (AuctionServiceException e){
-            model.addAttribute("error", e.getMessage());
-         return "sell-failed";
-        }
+            return redirectHomePage(model,e.getMessage(),MessageType.ERROR);        }
       return "/";
     }
 }

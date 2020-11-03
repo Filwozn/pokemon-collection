@@ -12,7 +12,7 @@ public abstract class BaseController {
         this.loginService = loginService;
     }
 
-    public String getHomePage(Model model, String message, MessageType messageType ){
+    public String redirectHomePage(Model model, String message, MessageType messageType ){
         model.addAttribute(messageType.getId(),message);
 
         if(loginService.isLogged()){

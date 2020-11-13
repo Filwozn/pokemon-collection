@@ -26,29 +26,35 @@ public class AuctionController extends BaseController {
     }
 
     @GetMapping("/market")
-    public String getAuctionSellPage(Model model){
+    public String getAuctionSellPage(Model model) {
         Trainer trainer = trainerService.getLoggedTrainer();
         model.addAttribute("cards", trainer.getCards().keySet());
         return "auction-sell";
     }
 
     @GetMapping("/market/sell/{id}")
-    public String getSellingForm(@PathVariable String id, Model model){
-        int cardsAmount = auctionService.howManySameIdCard(id);
-        if(cardsAmount <= 0){
-            return redirectHomePage(model,"Nie odnaleziono karty",MessageType.ERROR);
+    public String getSellingForm(@PathVariable String id, Model model) {
+        try {
+            int cardsAmount = auctionService.howManySameIdCard(id);
+
+            if (cardsAmount <= 0) {
+                return redirectHomePage(model, "Nie odnaleziono karty", MessageType.ERROR);
+            }
+            model.addAttribute("card", auctionService.findCardById(id));
+            model.addAttribute("amount", cardsAmount);
+            return "sell-form";
+        } catch (AuctionServiceException e) {
+            return redirectHomePage(model, e.getMessage(), MessageType.ERROR);
         }
-        model.addAttribute("card", auctionService.findCardById(id));
-        model.addAttribute("amount", cardsAmount);
-        return "sell-form";
     }
 
     @PostMapping("/market/sell/{id}")
-    public String sendSellingForm (@PathVariable String id, int amount, int price, Model model){
+    public String sendSellingForm(@PathVariable String id, int amount, int price, Model model) {
         try {
             auctionService.sellCards(id, amount, price);
-        }catch (AuctionServiceException e){
-            return redirectHomePage(model,e.getMessage(),MessageType.ERROR);        }
-      return "/";
+        } catch (AuctionServiceException e) {
+            return redirectHomePage(model, e.getMessage(), MessageType.ERROR);
+        }
+        return "/";
     }
 }

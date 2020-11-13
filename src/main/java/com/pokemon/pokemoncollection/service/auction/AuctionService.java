@@ -27,7 +27,7 @@ public class AuctionService {
         return trainer.getCardAmount(card);
     }
     public Card findCardById(String id){
-        return dataBaseCardRepository.findById(id).get();
+        return dataBaseCardRepository.findById(id).orElseThrow(()->new AuctionServiceException("Taka karta nie istnieje."));
     }
 
     public void sellCards(String id, int requestedAmount, int price) {

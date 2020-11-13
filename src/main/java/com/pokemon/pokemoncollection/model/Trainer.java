@@ -72,7 +72,7 @@ public class Trainer {
     }
 
     public int getCardAmount(Card card){
-        return cards.get(card);
+        return cards.getOrDefault(card, 0);
     }
 
     @Override

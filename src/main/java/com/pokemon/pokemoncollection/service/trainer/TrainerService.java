@@ -48,7 +48,7 @@ public class TrainerService {
 
     public void validateUserHasNoTrainer() {
         if (trainerRepository.findByEmail(loginService.getLoggerUserMail()) != null) {
-            throw new TrainerServiceException("Posiadasz już trenera");
+            throw new TrainerServiceException("Otwórz paczkę z Pokemonami!");
         }
     }
 

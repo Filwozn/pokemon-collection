@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 public abstract class BaseController {
-    private LoginService loginService;
+    protected LoginService loginService;
     public BaseController(LoginService loginService) {
         this.loginService = loginService;
     }
@@ -21,6 +21,7 @@ public abstract class BaseController {
         } else {
             model.addAttribute("email", "Niezalogowany");
         }
+        model.addAttribute("isLogged", loginService.isLogged());
         return "index";
     }
 }

@@ -26,7 +26,7 @@ public class TrainerController extends BaseController{
         try {
             trainerService.validateUserHasNoTrainer();
         }catch (TrainerServiceException e) {
-            return redirectHomePage(model, e.getMessage(),MessageType.ERROR);
+            return redirectHomePage(model, e.getMessage(),MessageType.SUCCESS);
         }
         return "trainer-form";
     }
@@ -40,7 +40,7 @@ public class TrainerController extends BaseController{
         } catch (TrainerServiceException e){
             return redirectHomePage(model, e.getMessage(),MessageType.ERROR);
         }
-        return "redirect:/statistics";
+        return "redirect:/";
     }
 
 

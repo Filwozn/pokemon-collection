@@ -23,6 +23,7 @@ public class LoginService {
         }
     }
 
+
     private UserDetails getLoggedUserDetails() {
         Object principal = getPrincipal();
         if (principal instanceof UserDetails) {

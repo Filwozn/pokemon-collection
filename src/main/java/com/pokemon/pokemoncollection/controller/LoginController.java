@@ -14,11 +14,6 @@ public class LoginController extends BaseController{
         super(loginService);
     }
 
-    /*@GetMapping("/login")
-        public String getLoginForm() {
-            System.out.println("Poprawne logowanie");
-            return "login-form";
-        }*/
     @GetMapping("/login")
     public String getLoginErrorForm(boolean error, Model model) {
         if(error){

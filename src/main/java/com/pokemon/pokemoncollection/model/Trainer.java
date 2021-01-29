@@ -4,10 +4,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 public class Trainer {
@@ -73,6 +70,23 @@ public class Trainer {
 
     public int getCardAmount(Card card){
         return cards.getOrDefault(card, 0);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Trainer trainer = (Trainer) o;
+        return email.equals(trainer.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

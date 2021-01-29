@@ -4,6 +4,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Card {
@@ -36,6 +37,19 @@ public class Card {
 
     public String getRarity() {
         return rarity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return id.equals(card.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override

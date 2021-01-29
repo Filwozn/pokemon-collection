@@ -1,0 +1,7 @@
+2020-11-13 19:20:37.778 ERROR 5576 --- [nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path []
+ threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/],
+ template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/], template might not exist or might not be accessible by
+ any of the configured Template Resolvers
+	

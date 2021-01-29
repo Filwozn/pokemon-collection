@@ -11,25 +11,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-public class AuctionController extends BaseController {
+@RequestMapping("/market")
+public class MarketSellController extends BaseController {
     private TrainerService trainerService;
     private AuctionService auctionService;
 
-    public AuctionController(TrainerService trainerService, AuctionService auctionService, LoginService loginService) {
+    public MarketSellController(TrainerService trainerService, AuctionService auctionService, LoginService loginService) {
         super(loginService);
         this.trainerService = trainerService;
         this.auctionService = auctionService;
     }
 
-    @GetMapping("/market")
+    @GetMapping("/sell")
     public String getAuctionSellPage(Model model) {
         Trainer trainer = trainerService.getLoggedTrainer();
         model.addAttribute("cards", trainer.getCards().keySet());
-        return "auction-sell";
+        return "market-sell";
     }
 
     @GetMapping("/market/sell/{id}")
@@ -48,13 +50,13 @@ public class AuctionController extends BaseController {
         }
     }
 
-    @PostMapping("/market/sell/{id}")
+    @PostMapping("/sell/{id}")
     public String sendSellingForm(@PathVariable String id, int amount, int price, Model model) {
         try {
             auctionService.sellCards(id, amount, price);
         } catch (AuctionServiceException e) {
             return redirectHomePage(model, e.getMessage(), MessageType.ERROR);
         }
-        return "/";
+        return "redirect:/market/sell";
     }
 }

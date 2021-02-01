@@ -9,7 +9,7 @@
 <h2>Wybierz kartę, którą chcesz sprzedać.</h2>
 <tr th:each="card:${cards}">
     <td>
-     <a th:href="'market/sell/' + ${card.id}"><img th:src="${card.imageUrl}"/></a>
+     <a th:href="'/market/sell/' + ${card.id}"><img th:src="${card.imageUrl}"/></a>
     </td>
 </tr><br>
 </body>

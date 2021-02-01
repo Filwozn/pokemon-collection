@@ -34,7 +34,7 @@ public class MarketSellController extends BaseController {
         return "market-sell";
     }
 
-    @GetMapping("/market/sell/{id}")
+    @GetMapping("/sell/{id}")
     public String getSellingForm(@PathVariable String id, Model model) {
         try {
             int cardsAmount = auctionService.howManySameIdCard(id);

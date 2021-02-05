@@ -9,7 +9,13 @@
 <h2>Wybierz kartę, którą chcesz kupić.</h2>
 <div th:each="auction:${data.auctions}">
     <img th:src="${auction.cardURL}">
+    <form th:action="'/market/buy/' + ${auction.auctionId}" method="post">
+        <p>Sprzedawca:[[${auction.sellerName}]]</p>
+        <p>Dostępne karty do kupna:[[${auction.cardAmount}]]</p>
+        <p>Cena:[[${auction.price}]]</p>
+        <input type="number" min="1" th:max="${auction.cardAmount}" name="buyAmount">
+        <button type="submit">KUP</button>
+    </form>
 </div>
-//ToDo Wykorzystać data, aby pokazać wszystkie dane na stronie.
 </body>
 </html>

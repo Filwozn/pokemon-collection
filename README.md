@@ -1,6 +1,6 @@
 # pokemon-collection
 ## General Info
- Webservice for collecting pokemon cards. Build with Spring MVC and Thyemleaf.
+ Webservice for collecting pokemon cards. Build with Spring MVC and Thymeleaf.
  ## Table of contents
 * [Technologies](#technologies)
 * [Setup](#setup)
@@ -8,7 +8,7 @@
 * [Screenshots](#screenshots)
 * [Examples](#examples)
 ## Technologies
-Java 11, Spring Boot, Spring MVC, Thyemleaf, Spring Security, H2 database.
+Java 11, Spring Boot, Spring MVC, Thymeleaf, Spring Security, H2 database, Rest Template.
 ## Setup
 Service is ready to deploy. Nothing to corfigurate.
 ## Features

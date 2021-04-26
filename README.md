@@ -10,10 +10,10 @@
 ## Technologies
 Java 11, Spring Boot, Spring MVC, Thymeleaf, Spring Security, H2 database, Rest Template.
 ## Setup
-Service is ready to deploy. Nothing to corfigurate.
+Thanks to Spring Boot service is ready to deploy. Nothing to corfigurate.
 ## Features
-You can register new account and create game avatar login and logout. Server downloads cards from Pokemon TCG Api and saves them in database. 
-All avaiable cards loading.You can spend coins for card packs and buy new coins. Card pack contains 5 random cards. Purchased cards are beeing 
+You can register new account, create game avatar, login and logout. Server downloads cards from Pokemon TCG Api and saves them in database. 
+You can view all cards and spend coins for card packs or buy new coins. Card pack contains 5 random cards. Purchased cards will be 
 saved in database and attached to pokemon's trainer. 
 ## Screenshots
 ## Examples

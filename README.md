@@ -1,6 +1,6 @@
 # pokemon-collection
 Webservice for collecting pokemon's cards.
-##General Info
+## General Info
 Service imitating pokemon's cards collecting build on Spring MVC.
 ## Table of contents
 * [Technologies](#technologies)

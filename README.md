@@ -1,8 +1,7 @@
 # pokemon-collection
-Webservice for collecting pokemon's cards.
 ## General Info
-Service imitating pokemon's cards collecting build on Spring MVC.
-## Table of contents
+ Webservice for collecting pokemon cards. Build with Spring MVC and Thyemleaf.
+ ## Table of contents
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)

@@ -1,4 +1,4 @@
-# pokemon-collection
+# Pokemon-Collection
 ## General Info
  Webservice for collecting pokemon cards. Build with Spring MVC and Thymeleaf.
  ## Table of contents
